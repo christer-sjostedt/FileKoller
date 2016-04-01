@@ -15,11 +15,11 @@ public class WindowGui extends javax.swing.JFrame {
 
     private void register()
     {
-        startButton.addActionListener( new ActionListener()
+        goButton.addActionListener( new ActionListener()
         {
             public void actionPerformed( ActionEvent ae )
             {
-                starter.openPath( gameChooserComboBox.getSelectedItem().toString() );
+                starter.openPath( pathComboBox.getSelectedItem().toString() );
             }
         });
 
@@ -82,78 +82,83 @@ public class WindowGui extends javax.swing.JFrame {
     private void initComponents()
     {
 
-        gameChooserComboBox = new javax.swing.JComboBox<>();
-        startButton = new javax.swing.JButton();
+        pathComboBox = new javax.swing.JComboBox<>();
+        goButton = new javax.swing.JButton();
         testButton = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        menuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        editMenu = new javax.swing.JMenu();
+        viewMenu = new javax.swing.JMenu();
+        ToolsMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        gameChooserComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "My Computer", "C:\\", "C:\\Users\\Chrille", "My Documents", "Downloads", " " }));
+        pathComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "My Computer", "C:\\", "C:\\Users\\Chrille", "My Documents", "Downloads", " " }));
 
-            startButton.setText("Go");
+            goButton.setText("Go");
 
             testButton.setText("Ts");
 
-            jSplitPane1.setDividerSize(3);
+            jSplitPane1.setDividerLocation(200);
+            jSplitPane1.setDividerSize(4);
+            jSplitPane1.setContinuousLayout(true);
+            jSplitPane1.setName(""); // NOI18N
 
-            jMenu1.setText("File");
-            jMenu1.setActionCommand("&File");
-            jMenuBar1.add(jMenu1);
+            fileMenu.setText("File");
+            fileMenu.setToolTipText("File system operations");
+            fileMenu.setActionCommand("&File");
+            menuBar.add(fileMenu);
 
-            jMenu2.setText("Edit");
-            jMenuBar1.add(jMenu2);
+            editMenu.setText("Edit");
+            editMenu.setToolTipText("Editing of objects and metadata");
+            menuBar.add(editMenu);
 
-            jMenu3.setText("View");
-            jMenuBar1.add(jMenu3);
+            viewMenu.setText("View");
+            viewMenu.setToolTipText("Visual options");
+            menuBar.add(viewMenu);
 
-            jMenu4.setText("Tools");
-            jMenu4.setToolTipText("");
-            jMenuBar1.add(jMenu4);
+            ToolsMenu.setText("Tools");
+            ToolsMenu.setToolTipText("Advanced tools");
+            menuBar.add(ToolsMenu);
 
-            setJMenuBar(jMenuBar1);
+            setJMenuBar(menuBar);
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(gameChooserComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pathComboBox, 0, 430, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(testButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(testButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jSplitPane1)
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(gameChooserComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(startButton)
+                        .addComponent(pathComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(goButton)
                         .addComponent(testButton))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
             );
 
             pack();
         }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> gameChooserComboBox;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu ToolsMenu;
+    private javax.swing.JMenu editMenu;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JButton goButton;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JButton startButton;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JComboBox<String> pathComboBox;
     private javax.swing.JButton testButton;
+    private javax.swing.JMenu viewMenu;
     // End of variables declaration//GEN-END:variables
 }
