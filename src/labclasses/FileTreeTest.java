@@ -1,4 +1,4 @@
-package testclasses;
+package labclasses;
 
 import static java.lang.System.out;
 

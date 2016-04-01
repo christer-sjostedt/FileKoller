@@ -1,4 +1,4 @@
-package testclasses;
+package labclasses;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
