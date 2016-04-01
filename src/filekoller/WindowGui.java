@@ -98,7 +98,7 @@ public class WindowGui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pathComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "My Computer", "C:\\", "C:\\Users\\Chrille", "My Documents", "Downloads", " " }));
+        pathComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<html><i>My Computer</i></html>", "C:\\", "C:\\Users\\Chrille", "<html><i>My Documents</i></html>", "<html><i>Downloads</i></html>", " " }));
 
             goButton.setText("Go");
 
@@ -195,7 +195,7 @@ public class WindowGui extends javax.swing.JFrame {
 
             fileList.setModel(new javax.swing.AbstractListModel<String>()
             {
-                String[] strings = { "FrameList.java", "README.txt", "SerializableTest.java", "Test.java", "TestGui.java", " " };
+                String[] strings = { "FrameList.java", "README.txt", "SerializableTest.java", "<html><b>SETUP.EXE</b></html>", "Test.java", "TestGui.java", " " };
                 public int getSize() { return strings.length; }
                 public String getElementAt(int i) { return strings[i]; }
             });
