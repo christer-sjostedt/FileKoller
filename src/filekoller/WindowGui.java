@@ -85,12 +85,16 @@ public class WindowGui extends javax.swing.JFrame {
         pathComboBox = new javax.swing.JComboBox<>();
         goButton = new javax.swing.JButton();
         testButton = new javax.swing.JButton();
-        jSplitPane1 = new javax.swing.JSplitPane();
+        mainSplitPane = new javax.swing.JSplitPane();
+        leftScrollPane = new javax.swing.JScrollPane();
+        filesystemTree = new javax.swing.JTree();
+        rightScrollPane = new javax.swing.JScrollPane();
+        fileList = new javax.swing.JList<>();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         editMenu = new javax.swing.JMenu();
         viewMenu = new javax.swing.JMenu();
-        ToolsMenu = new javax.swing.JMenu();
+        toolsMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,10 +104,25 @@ public class WindowGui extends javax.swing.JFrame {
 
             testButton.setText("Ts");
 
-            jSplitPane1.setDividerLocation(200);
-            jSplitPane1.setDividerSize(4);
-            jSplitPane1.setContinuousLayout(true);
-            jSplitPane1.setName(""); // NOI18N
+            mainSplitPane.setDividerLocation(200);
+            mainSplitPane.setDividerSize(4);
+            mainSplitPane.setContinuousLayout(true);
+            mainSplitPane.setLastDividerLocation(165);
+            mainSplitPane.setName(""); // NOI18N
+
+            leftScrollPane.setViewportView(filesystemTree);
+
+            mainSplitPane.setLeftComponent(leftScrollPane);
+
+            fileList.setModel(new javax.swing.AbstractListModel<String>()
+            {
+                String[] strings = { "FrameList.java", "README.txt", "SerializableTest.java", "Test.java", "TestGui.java", " " };
+                public int getSize() { return strings.length; }
+                public String getElementAt(int i) { return strings[i]; }
+            });
+            rightScrollPane.setViewportView(fileList);
+
+            mainSplitPane.setRightComponent(rightScrollPane);
 
             fileMenu.setText("File");
             fileMenu.setToolTipText("File system operations");
@@ -118,9 +137,9 @@ public class WindowGui extends javax.swing.JFrame {
             viewMenu.setToolTipText("Visual options");
             menuBar.add(viewMenu);
 
-            ToolsMenu.setText("Tools");
-            ToolsMenu.setToolTipText("Advanced tools");
-            menuBar.add(ToolsMenu);
+            toolsMenu.setText("Tools");
+            toolsMenu.setToolTipText("Advanced tools");
+            menuBar.add(toolsMenu);
 
             setJMenuBar(menuBar);
 
@@ -134,7 +153,7 @@ public class WindowGui extends javax.swing.JFrame {
                     .addComponent(goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(testButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jSplitPane1)
+                .addComponent(mainSplitPane)
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,21 +163,25 @@ public class WindowGui extends javax.swing.JFrame {
                         .addComponent(goButton)
                         .addComponent(testButton))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
+                    .addComponent(mainSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
             );
 
             pack();
         }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu ToolsMenu;
     private javax.swing.JMenu editMenu;
+    private javax.swing.JList<String> fileList;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JTree filesystemTree;
     private javax.swing.JButton goButton;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JScrollPane leftScrollPane;
+    private javax.swing.JSplitPane mainSplitPane;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JComboBox<String> pathComboBox;
+    private javax.swing.JScrollPane rightScrollPane;
     private javax.swing.JButton testButton;
+    private javax.swing.JMenu toolsMenu;
     private javax.swing.JMenu viewMenu;
     // End of variables declaration//GEN-END:variables
 }
