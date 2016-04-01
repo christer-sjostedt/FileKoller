@@ -110,6 +110,85 @@ public class WindowGui extends javax.swing.JFrame {
             mainSplitPane.setLastDividerLocation(165);
             mainSplitPane.setName(""); // NOI18N
 
+            javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("My Computer");
+            javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Favorites");
+            javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Downloads");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Documents");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Pictures");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Videos");
+            treeNode2.add(treeNode3);
+            treeNode1.add(treeNode2);
+            treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Documents");
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Offerter");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Läxor");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Arbetet");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Samfälligheten");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Minneslistor");
+            treeNode2.add(treeNode3);
+            treeNode1.add(treeNode2);
+            treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("C: (System)");
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Drivers");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("PerfLogs");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Program Files");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Program Files (x86)");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ProgramData");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Temp");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Users");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Windows");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Work");
+            treeNode2.add(treeNode3);
+            treeNode1.add(treeNode2);
+            treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("D: (SD Card)");
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Camera");
+            javax.swing.tree.DefaultMutableTreeNode treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("DSL_0100");
+            treeNode3.add(treeNode4);
+            treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("DSL_0110");
+            treeNode3.add(treeNode4);
+            treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("DSL_0120");
+            treeNode3.add(treeNode4);
+            treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("DSL_0130");
+            treeNode3.add(treeNode4);
+            treeNode2.add(treeNode3);
+            treeNode1.add(treeNode2);
+            treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("E: (Ericsson Xperia)");
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Sync");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Contacts");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Album");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Camera");
+            treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("DSL_0100");
+            treeNode3.add(treeNode4);
+            treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("DSL_0110");
+            treeNode3.add(treeNode4);
+            treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("DSL_0120");
+            treeNode3.add(treeNode4);
+            treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("DSL_0130");
+            treeNode3.add(treeNode4);
+            treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("DSL_0140");
+            treeNode3.add(treeNode4);
+            treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("DSL_0150");
+            treeNode3.add(treeNode4);
+            treeNode2.add(treeNode3);
+            treeNode1.add(treeNode2);
+            filesystemTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+            filesystemTree.setExpandsSelectedPaths(false);
             leftScrollPane.setViewportView(filesystemTree);
 
             mainSplitPane.setLeftComponent(leftScrollPane);
@@ -148,12 +227,12 @@ public class WindowGui extends javax.swing.JFrame {
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pathComboBox, 0, 430, Short.MAX_VALUE)
+                    .addComponent(pathComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(testButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(mainSplitPane)
+                .addComponent(mainSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
