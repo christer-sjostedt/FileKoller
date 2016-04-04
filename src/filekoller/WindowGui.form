@@ -127,7 +127,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTree" name="filesystemTree">
+            <Component class="javax.swing.JTree" name="demoFilesystemTree">
               <Properties>
                 <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
                   <TreeModel code="My Computer&#xa; Favorites&#xa;  Downloads&#xa;  Documents&#xa;  Pictures&#xa;  Videos&#xa; Documents&#xa;  Offerter&#xa;  L&#xe4;xor&#xa;  Arbetet&#xa;  Samf&#xe4;lligheten&#xa;  Minneslistor&#xa; C: (System)&#xa;  Drivers&#xa;  PerfLogs&#xa;  Program Files&#xa;  Program Files (x86)&#xa;  ProgramData&#xa;  Temp&#xa;  Users&#xa;  Windows&#xa;  Work&#xa; D: (SD Card)&#xa;  Camera&#xa;   DSL_0100&#xa;   DSL_0110&#xa;   DSL_0120&#xa;   DSL_0130&#xa; E: (Ericsson Xperia)&#xa;  Sync&#xa;  Contacts&#xa;  Album&#xa;  Camera&#xa;   DSL_0100&#xa;   DSL_0110&#xa;   DSL_0120&#xa;   DSL_0130&#xa;   DSL_0140&#xa;   DSL_0150&#xa;"/>

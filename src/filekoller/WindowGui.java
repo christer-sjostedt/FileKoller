@@ -2,14 +2,16 @@ package filekoller;
 
 import java.awt.event.*;
 
-public class WindowGui extends javax.swing.JFrame {
+public class WindowGui extends javax.swing.JFrame
+{
 
     /**
      * Creates new form StarterGUI
      */
-    public WindowGui() {
+    public WindowGui()
+    {
         initComponents();
-        starter = new Window(this);
+        windowModel = new Window(this);
         register();
     }
 
@@ -19,7 +21,7 @@ public class WindowGui extends javax.swing.JFrame {
         {
             public void actionPerformed( ActionEvent ae )
             {
-                starter.openPath( pathComboBox.getSelectedItem().toString() );
+                windowModel.openPath( pathComboBox.getSelectedItem().toString() );
             }
         });
 
@@ -27,7 +29,7 @@ public class WindowGui extends javax.swing.JFrame {
         {
             public void actionPerformed( ActionEvent ae )
             {
-                starter.printTestMessage();
+                windowModel.printTestMessage();
             }
         });
     }
@@ -41,11 +43,16 @@ public class WindowGui extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                System.out.println( " * " + info.getName() );
+
+                if ("Windows Classic".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+                    //break;
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -63,14 +70,19 @@ public class WindowGui extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new WindowGui().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(
+                new Runnable()
+                {
+                    public void run()
+                    {
+                        new WindowGui().setVisible(true);
+                    }
+                }
+        );
     }
 
-    private Window starter;
+    private Window windowModel;
+    private javax.swing.JTree filesystemTree;
 
    /**
      * This method is called from within the constructor to initialize the form.
@@ -87,7 +99,7 @@ public class WindowGui extends javax.swing.JFrame {
         testButton = new javax.swing.JButton();
         mainSplitPane = new javax.swing.JSplitPane();
         leftScrollPane = new javax.swing.JScrollPane();
-        filesystemTree = new javax.swing.JTree();
+        demoFilesystemTree = new javax.swing.JTree();
         rightScrollPane = new javax.swing.JScrollPane();
         fileList = new javax.swing.JList<>();
         menuBar = new javax.swing.JMenuBar();
@@ -187,9 +199,9 @@ public class WindowGui extends javax.swing.JFrame {
             treeNode3.add(treeNode4);
             treeNode2.add(treeNode3);
             treeNode1.add(treeNode2);
-            filesystemTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-            filesystemTree.setExpandsSelectedPaths(false);
-            leftScrollPane.setViewportView(filesystemTree);
+            demoFilesystemTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+            demoFilesystemTree.setExpandsSelectedPaths(false);
+            leftScrollPane.setViewportView(demoFilesystemTree);
 
             mainSplitPane.setLeftComponent(leftScrollPane);
 
@@ -249,10 +261,10 @@ public class WindowGui extends javax.swing.JFrame {
         }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTree demoFilesystemTree;
     private javax.swing.JMenu editMenu;
     private javax.swing.JList<String> fileList;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JTree filesystemTree;
     private javax.swing.JButton goButton;
     private javax.swing.JScrollPane leftScrollPane;
     private javax.swing.JSplitPane mainSplitPane;
