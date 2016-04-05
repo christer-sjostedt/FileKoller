@@ -25,7 +25,8 @@ public class FileTreeTest
 
             // listing directory content
             //File f = new File(currentDir1);
-            File f = new File("C:\\");
+            //File f = new File("C:\\");
+            File f = new File("/"); // gives system disk root
             //f = new File(f.getParent()); // TEST
             //Path dir = new Path("C:\\"); // TEST
             ArrayList<File> files = new ArrayList<>(Arrays.asList(f.listFiles()));
