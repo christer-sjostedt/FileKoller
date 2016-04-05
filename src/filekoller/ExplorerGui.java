@@ -44,7 +44,11 @@ public class ExplorerGui extends javax.swing.JFrame
                 {
                     public void actionPerformed( ActionEvent ae )
                     {
-                        explorerModel.openPath( pathComboBox.getSelectedItem().toString() );
+                        // if directory:
+                        expand( "C:\\Projects\\Java\\FileKoller" );
+
+                        // if file:
+                        //explorerModel.openPath( pathComboBox.getSelectedItem().toString() );
                     }
                 }
         );
