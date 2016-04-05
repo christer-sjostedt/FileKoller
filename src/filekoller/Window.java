@@ -2,18 +2,18 @@ package filekoller;
 
 public class Window
 {
-    WindowGui _starterGui;
+    WindowGui _windowGui;
 
-    public Window( WindowGui starterGui )
+    public Window( WindowGui windowGui )
     {
-        _starterGui = starterGui;
+        _windowGui = windowGui;
     }
 
-    public void openPath( String program )
+    public void openPath( String path )
     {
-        System.out.println( "Operning " + program +  "..." );
+        System.out.println( "Operning " + path +  "..." );
 
-        // TODO: Starta ett annat program här!
+        _windowGui.update();
     }
 
     public void printTestMessage()

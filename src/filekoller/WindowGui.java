@@ -1,6 +1,8 @@
 package filekoller;
 
 import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.tree.*;
 
 public class WindowGui extends javax.swing.JFrame
 {
@@ -33,6 +35,19 @@ public class WindowGui extends javax.swing.JFrame
             }
         });
     }
+
+    public void update() // tell GUI to retrieve new data and update itself
+    {
+        filesystemTree = new JTree();
+        DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("C:");
+        DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Windows");
+        DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Drivers");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        filesystemTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        filesystemTree.setExpandsSelectedPaths(false);
+        leftScrollPane.setViewportView(filesystemTree);
+  }
 
     /**
      * @param args the command line arguments
