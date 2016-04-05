@@ -16,7 +16,7 @@ public class Explorer
 
     public ArrayList<FileEntry> buildTree( String path )
     {
-        System.out.println( "Building tree from " + path +  "..." );
+        //System.out.println( "Building tree from " + path +  "..." );
 
         File f = new File(path);
 
