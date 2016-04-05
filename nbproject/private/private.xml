@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Projects/Java/SwingTest1/src/swingtest1/StarterGUI.java</file>
+            <file>file:/C:/Projects/Java/FileKoller/src/filekoller/ExplorerGui.java</file>
+            <file>file:/C:/Projects/Java/FileKoller/src/filekoller/FileEntry.java</file>
+            <file>file:/C:/Projects/Java/FileKoller/src/labclasses/FileTreeTest.java</file>
+            <file>file:/C:/Projects/Java/FileKoller/src/filekoller/Explorer.java</file>
         </group>
     </open-files>
 </project-private>

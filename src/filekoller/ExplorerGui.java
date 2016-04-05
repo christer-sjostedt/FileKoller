@@ -17,7 +17,6 @@ public class ExplorerGui extends javax.swing.JFrame
         register();
     }
 
-    int counter = 0;
     private void register()
     {
         expandDeepButton.addActionListener(
@@ -25,16 +24,7 @@ public class ExplorerGui extends javax.swing.JFrame
                 {
                     public void actionPerformed( ActionEvent ae )
                     {
-                        //explorerModel.buildTree( "C:\\" );
-                        //update( "/" ); // should on Windows find and iterate over disks
-                        if (++counter%2!=0)
-                        {
-                            expand( "C:\\Projects\\Java\\FileKoller" );
-                        }
-                        else
-                        {
-                            expandDeep( "C:\\Projects\\Java\\FileKoller" );
-                        }
+                        expandDeep( "C:\\Projects\\Java\\FileKoller" );
                     }
                 }
         );
