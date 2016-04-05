@@ -1,15 +1,13 @@
 package filekoller;
 
 import java.awt.event.*;
+import java.io.*;
+import java.util.*;
 import javax.swing.*;
 import javax.swing.tree.*;
 
 public class ExplorerGui extends javax.swing.JFrame
 {
-
-    /**
-     * Creates new form ExplorerGui
-     */
     public ExplorerGui()
     {
         initComponents();
@@ -23,31 +21,55 @@ public class ExplorerGui extends javax.swing.JFrame
         {
             public void actionPerformed( ActionEvent ae )
             {
-                explorerModel.openPath( pathComboBox.getSelectedItem().toString() );
-            }
+                //explorerModel.buildTree( "C:\\" );
+                //update( "/" ); // should on Windows find and iterate over disks
+                update( "C:\\Projects\\Java\\FileKoller" );
+            } 
         });
 
         testButton.addActionListener( new ActionListener()
         {
             public void actionPerformed( ActionEvent ae )
             {
-                explorerModel.printTestMessage();
+                explorerModel.openPath( pathComboBox.getSelectedItem().toString() );
             }
         });
     }
 
-    public void update() // tell GUI to retrieve new data and update itself
+    public void update( String path ) // tell GUI to retrieve new data for a certain (sub) path and update itself
     {
-        DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("C:");
-        DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Windows");
-        DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Drivers");
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(path);
+        update(path,node);
+
+        filesystemTree = new JTree();
+        filesystemTree.setModel(new DefaultTreeModel(node));
+        filesystemTree.setExpandsSelectedPaths(false);
+        leftScrollPane.setViewportView(filesystemTree);
+    }
+
+    public void update( String path, DefaultMutableTreeNode node )
+    {
+        ArrayList<FileEntry> entries = explorerModel.buildTree( path );
+
+        for (FileEntry entry : entries)
+        {
+            DefaultMutableTreeNode subNode = new DefaultMutableTreeNode(entry._file.getName());
+            node.add(subNode);
+        }
+    }
+
+    public void updateFake() // tell GUI to retrieve new data and update itself
+    {
+        DefaultMutableTreeNode treeNode1 = new DefaultMutableTreeNode("C:");
+        DefaultMutableTreeNode treeNode2 = new DefaultMutableTreeNode("Windows");
+        DefaultMutableTreeNode treeNode3 = new DefaultMutableTreeNode("Drivers");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         filesystemTree = new JTree();
-        filesystemTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        filesystemTree.setModel(new DefaultTreeModel(treeNode1));
         filesystemTree.setExpandsSelectedPaths(false);
         leftScrollPane.setViewportView(filesystemTree);
-  }
+    }
 
     /**
      * @param args the command line arguments
@@ -80,17 +102,12 @@ public class ExplorerGui extends javax.swing.JFrame
             java.util.logging.Logger.getLogger(ExplorerGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
+        java.awt.EventQueue.invokeLater(
+                new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         new ExplorerGui().setVisible(true);

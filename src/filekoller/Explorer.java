@@ -1,5 +1,10 @@
 package filekoller;
 
+import static java.lang.System.*;
+
+import java.io.*;
+import java.util.*;
+
 public class Explorer
 {
     ExplorerGui _explorerGui;
@@ -9,17 +14,38 @@ public class Explorer
         _explorerGui = explorerGui;
     }
 
-    public void openPath( String path )
+    public ArrayList<FileEntry> buildTree( String path )
     {
-        System.out.println( "Operning " + path +  "..." );
+        System.out.println( "Building tree from " + path +  "..." );
 
-        _explorerGui.update();
+        File f = new File(path);
+
+        ArrayList<File> files = new ArrayList<>(Arrays.asList(f.listFiles()));
+        ArrayList<FileEntry> plainFiles = new ArrayList<>();
+        ArrayList<FileEntry> directories = new ArrayList<>();
+
+        for (File file : files)
+        {
+            if (file.isDirectory())
+            {
+                directories.add(new FileEntry(file));
+            }
+            else if (file.isFile())
+            {
+                plainFiles.add(new FileEntry(file));
+            }
+        }
+
+        return directories;
     }
 
-    public void printTestMessage()
+    public void viewDirectory( String path )
     {
-        System.out.println( "Printing a test message..." );
+        System.out.println( "Viewing files in " + path +  "..." );
+    }
 
-        // (Den här metoden är bara för test!)
+    public void openPath( String path )
+    {
+        System.out.println( "Operning file " + path +  "..." );
     }
 }
