@@ -2,17 +2,11 @@ package labclasses;
 
 import static java.lang.System.out;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.*;
+import java.nio.file.*;
+import java.text.*;
+import java.util.*;
+import java.util.logging.*;
 
 public class FileTreeTest
 {
@@ -30,24 +24,29 @@ public class FileTreeTest
             out.println("Current dir by using System: " + currentDir2);
 
             // listing directory content
-            File f = new File(currentDir1);
-            //File f = new File("C:\\");
-            //ArrayList<String> names = new ArrayList<>(Arrays.asList(f.list()));
+            //File f = new File(currentDir1);
+            File f = new File("C:\\");
+            //f = new File(f.getParent()); // TEST
+            //Path dir = new Path("C:\\"); // TEST
             ArrayList<File> files = new ArrayList<>(Arrays.asList(f.listFiles()));
             ArrayList<File> plainFiles = new ArrayList<>();
             ArrayList<File> directories = new ArrayList<>();
 
+            out.println("\nCurrent: " + f.getName());
+            out.println("\nParent: " + f.getParent()); // TEST
             out.println("\nDirectory listing:");
 
             int maxNameLength = 0;
             long maxFileSize = 0;
             for (File file : files)
             {
+                //out.println(" ~ " + file.getName());// TEST
                 if (file.isDirectory())
                 {
                     directories.add(file);
 
-                    if (file.list().length > maxFileSize)
+                    String[] list = file.list();
+                    if (list != null  &&  list.length > maxFileSize)
                     {
                         maxFileSize = file.list().length;
                     }
@@ -72,12 +71,13 @@ public class FileTreeTest
 
             for (File file : directories)
             {
-                out.printf( "%s %s %s %-" + maxNameLength + "s %" + maxFileSizeLength + "d %s\n",
+                String[] list = file.list();
+                out.printf( "%s %s %s %-" + maxNameLength + "s %" + maxFileSizeLength + "s %s\n",
                         formatFileType(file),
                         formatFileAccesses(file),
                         formatFileAttributes(file),
                         file.getName(),
-                        file.list().length,
+                        (list!=null)?list.length:"?",
                         formatDate(file) );
             }
 
@@ -184,7 +184,8 @@ public class FileTreeTest
         }
         else
         {
-            retval += "(undisclosed)";
+            //retval += "(undisclosed)";
+            retval += "";
         }
 
         return retval;
