@@ -1,5 +1,7 @@
 package filekoller;
 
+import static java.lang.System.*;
+
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
@@ -15,31 +17,50 @@ public class ExplorerGui extends javax.swing.JFrame
         register();
     }
 
+    int counter = 0;
     private void register()
     {
-        goButton.addActionListener( new ActionListener()
-        {
-            public void actionPerformed( ActionEvent ae )
-            {
-                //explorerModel.buildTree( "C:\\" );
-                //update( "/" ); // should on Windows find and iterate over disks
-                update( "C:\\Projects\\Java\\FileKoller" );
-            } 
-        });
+        expandDeepButton.addActionListener(
+                new ActionListener()
+                {
+                    public void actionPerformed( ActionEvent ae )
+                    {
+                        //explorerModel.buildTree( "C:\\" );
+                        //update( "/" ); // should on Windows find and iterate over disks
+                        if (++counter%2!=0)
+                        {
+                            expand( "C:\\Projects\\Java\\FileKoller" );
+                        }
+                        else
+                        {
+                            expandDeep( "C:\\Projects\\Java\\FileKoller" );
+                        }
+                    }
+                }
+        );
 
-        testButton.addActionListener( new ActionListener()
-        {
-            public void actionPerformed( ActionEvent ae )
-            {
-                explorerModel.openPath( pathComboBox.getSelectedItem().toString() );
-            }
-        });
+        goButton.addActionListener(
+                new ActionListener()
+                {
+                    public void actionPerformed( ActionEvent ae )
+                    {
+                        explorerModel.openPath( pathComboBox.getSelectedItem().toString() );
+                    }
+                }
+        );
     }
 
-    public void update( String path ) // tell GUI to retrieve new data for a certain (sub) path and update itself
+    private void expand( String path ) // tell GUI to retrieve new data for a certain (sub) path and expand itself in 1 level
     {
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(path);
-        update(path,node);
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode( path );
+
+        ArrayList<FileEntry> entries = explorerModel.buildTree( path );
+
+        for (FileEntry entry : entries)
+        {
+            DefaultMutableTreeNode subNode = new DefaultMutableTreeNode( entry._file.getName() );
+            node.add( subNode );
+        }
 
         filesystemTree = new JTree();
         filesystemTree.setModel(new DefaultTreeModel(node));
@@ -47,18 +68,30 @@ public class ExplorerGui extends javax.swing.JFrame
         leftScrollPane.setViewportView(filesystemTree);
     }
 
-    public void update( String path, DefaultMutableTreeNode node )
+    private void expandDeep( String path ) // tell GUI to retrieve new data for a certain (sub) path and expand itself recursively
+    {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode( path );
+        expandDeep( path, node );
+
+        filesystemTree = new JTree();
+        filesystemTree.setModel(new DefaultTreeModel(node));
+        filesystemTree.setExpandsSelectedPaths(false);
+        leftScrollPane.setViewportView(filesystemTree);
+    }
+
+    private void expandDeep( String path, DefaultMutableTreeNode node )
     {
         ArrayList<FileEntry> entries = explorerModel.buildTree( path );
 
         for (FileEntry entry : entries)
         {
-            DefaultMutableTreeNode subNode = new DefaultMutableTreeNode(entry._file.getName());
-            node.add(subNode);
+            DefaultMutableTreeNode subNode = new DefaultMutableTreeNode( entry._file.getName() );
+            node.add( subNode );
+            expandDeep( entry._file.getPath(), subNode );
         }
     }
 
-    public void updateFake() // tell GUI to retrieve new data and update itself
+    public void updateFake() // tell GUI to retrieve new data and expandDeep itself
     {
         DefaultMutableTreeNode treeNode1 = new DefaultMutableTreeNode("C:");
         DefaultMutableTreeNode treeNode2 = new DefaultMutableTreeNode("Windows");
@@ -131,7 +164,7 @@ public class ExplorerGui extends javax.swing.JFrame
 
         pathComboBox = new javax.swing.JComboBox<>();
         goButton = new javax.swing.JButton();
-        testButton = new javax.swing.JButton();
+        expandDeepButton = new javax.swing.JButton();
         mainSplitPane = new javax.swing.JSplitPane();
         leftScrollPane = new javax.swing.JScrollPane();
         demoFilesystemTree = new javax.swing.JTree();
@@ -149,7 +182,14 @@ public class ExplorerGui extends javax.swing.JFrame
 
             goButton.setText("Go");
 
-            testButton.setText("Ts");
+            expandDeepButton.setText("Exp");
+            expandDeepButton.addActionListener(new java.awt.event.ActionListener()
+            {
+                public void actionPerformed(java.awt.event.ActionEvent evt)
+                {
+                    expandDeepButtonActionPerformed(evt);
+                }
+            });
 
             mainSplitPane.setDividerLocation(200);
             mainSplitPane.setDividerSize(4);
@@ -274,12 +314,13 @@ public class ExplorerGui extends javax.swing.JFrame
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(pathComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pathComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(testButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(mainSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                    .addGap(6, 6, 6)
+                    .addComponent(expandDeepButton)
+                    .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(mainSplitPane)
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,7 +328,7 @@ public class ExplorerGui extends javax.swing.JFrame
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(pathComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(goButton)
-                        .addComponent(testButton))
+                        .addComponent(expandDeepButton))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(mainSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
             );
@@ -295,9 +336,15 @@ public class ExplorerGui extends javax.swing.JFrame
             pack();
         }// </editor-fold>//GEN-END:initComponents
 
+    private void expandDeepButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_expandDeepButtonActionPerformed
+    {//GEN-HEADEREND:event_expandDeepButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_expandDeepButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree demoFilesystemTree;
     private javax.swing.JMenu editMenu;
+    private javax.swing.JButton expandDeepButton;
     private javax.swing.JList<String> fileList;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JButton goButton;
@@ -306,7 +353,6 @@ public class ExplorerGui extends javax.swing.JFrame
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JComboBox<String> pathComboBox;
     private javax.swing.JScrollPane rightScrollPane;
-    private javax.swing.JButton testButton;
     private javax.swing.JMenu toolsMenu;
     private javax.swing.JMenu viewMenu;
     // End of variables declaration//GEN-END:variables
