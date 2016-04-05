@@ -4,16 +4,16 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.tree.*;
 
-public class WindowGui extends javax.swing.JFrame
+public class ExplorerGui extends javax.swing.JFrame
 {
 
     /**
-     * Creates new form WindowGui
+     * Creates new form ExplorerGui
      */
-    public WindowGui()
+    public ExplorerGui()
     {
         initComponents();
-        windowModel = new Window(this);
+        explorerModel = new Explorer(this);
         register();
     }
 
@@ -23,7 +23,7 @@ public class WindowGui extends javax.swing.JFrame
         {
             public void actionPerformed( ActionEvent ae )
             {
-                windowModel.openPath( pathComboBox.getSelectedItem().toString() );
+                explorerModel.openPath( pathComboBox.getSelectedItem().toString() );
             }
         });
 
@@ -31,7 +31,7 @@ public class WindowGui extends javax.swing.JFrame
         {
             public void actionPerformed( ActionEvent ae )
             {
-                windowModel.printTestMessage();
+                explorerModel.printTestMessage();
             }
         });
     }
@@ -71,32 +71,35 @@ public class WindowGui extends javax.swing.JFrame
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WindowGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExplorerGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WindowGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExplorerGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WindowGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExplorerGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WindowGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExplorerGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(
-                new Runnable()
+        java.awt.EventQueue.invokeLater(new Runnable()
                 {
                     public void run()
                     {
-                        new WindowGui().setVisible(true);
+                        new ExplorerGui().setVisible(true);
                     }
                 }
         );
     }
 
-    private Window windowModel;
+    private Explorer explorerModel;
     private javax.swing.JTree filesystemTree;
 
    /**

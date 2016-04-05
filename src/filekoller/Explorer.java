@@ -1,19 +1,19 @@
 package filekoller;
 
-public class Window
+public class Explorer
 {
-    WindowGui _windowGui;
+    ExplorerGui _explorerGui;
 
-    public Window( WindowGui windowGui )
+    public Explorer( ExplorerGui explorerGui )
     {
-        _windowGui = windowGui;
+        _explorerGui = explorerGui;
     }
 
     public void openPath( String path )
     {
         System.out.println( "Operning " + path +  "..." );
 
-        _windowGui.update();
+        _explorerGui.update();
     }
 
     public void printTestMessage()
