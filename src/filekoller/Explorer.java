@@ -46,6 +46,6 @@ public class Explorer
 
     public void openPath( String path )
     {
-        System.out.println( "Operning file " + path +  "..." );
+        System.out.println( "Opening file " + path +  "..." );
     }
 }
