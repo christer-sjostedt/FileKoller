@@ -10,12 +10,20 @@ public class FileEntry
         _file = file;
     }
 
-    public ArrayList<FileEntry> getSubEntries()
+    public ArrayList<FileEntry> getSubEntries() // Maybe not needed...
     {
-
-
         return null; // TEMP
     }
 
-    File _file;
+    File getFile()
+    {
+        return _file;
+    }
+
+    void setFile( File file )
+    {
+        _file = file;
+    }
+
+    private File _file;
 }

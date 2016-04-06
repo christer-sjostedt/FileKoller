@@ -52,7 +52,7 @@ public class ExplorerGui extends javax.swing.JFrame
 
         for (FileEntry entry : entries)
         {
-            DefaultMutableTreeNode subNode = new DefaultMutableTreeNode( entry._file.getName() );
+            DefaultMutableTreeNode subNode = new DefaultMutableTreeNode( entry.getFile().getName() );
             node.add( subNode );
         }
 
@@ -79,9 +79,9 @@ public class ExplorerGui extends javax.swing.JFrame
 
         for (FileEntry entry : entries)
         {
-            DefaultMutableTreeNode subNode = new DefaultMutableTreeNode( entry._file.getName() );
+            DefaultMutableTreeNode subNode = new DefaultMutableTreeNode( entry.getFile().getName() );
             node.add( subNode );
-            expandDeep( entry._file.getPath(), subNode );
+            expandDeep( entry.getFile().getPath(), subNode );
         }
     }
 
