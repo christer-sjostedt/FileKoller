@@ -19,6 +19,19 @@ public class ExplorerGui extends javax.swing.JFrame
 
     private void register()
     {
+        // Tell tree where in the filesystem to start displaying
+        File root = new File( "/" );
+
+        // Create a TreeModel object to represent our tree of files
+        FileTreeModel model = new FileTreeModel( root );
+
+        // Tell tree to display our model
+        filesystemTree = new JTree();
+        filesystemTree.setModel( model );
+        filesystemTree.setExpandsSelectedPaths(false);
+        leftScrollPane.setViewportView(filesystemTree);
+
+
         expandDeepButton.addActionListener(
                 new ActionListener()
                 {

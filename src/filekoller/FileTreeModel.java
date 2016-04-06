@@ -9,7 +9,7 @@ import java.io.*;
  The methods in this class allow the JTree component to traverse
  the file system tree and display the files and directories.
  **/
-class FileTreeModel implements TreeModel
+public class FileTreeModel implements TreeModel
 {
     // We specify the root directory when we create the model.
     protected File root;
